@@ -42,7 +42,7 @@ export function InputActions({
           <EraseButton 
             onClick={onClearAll} 
             showText={true}
-            fullWidth={false}
+            fullWidth={true}
           />
         )}
         
@@ -51,7 +51,7 @@ export function InputActions({
             isRecording={false}
             onStart={onStartBoth}
             onStop={onStopBoth}
-            fullWidth={!hasContent}
+            fullWidth={true}
           />
         ) : (
           <RecordButton
