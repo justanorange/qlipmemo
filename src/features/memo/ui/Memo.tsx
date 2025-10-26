@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useVoiceInput } from '@features/memo/hooks/useVoiceInput';
 import { useLocalStorage, useIndexedDB } from '@shared/hooks/';
 import { useUIStore } from '@/shared/lib/stores/uiStore';
@@ -13,7 +13,6 @@ import { InputActions } from './Buttons';
 export const Memo = () => {
   const [input, setInput, clearInput] = useLocalStorage('memo_text', '');
   const [lastSaved, setLastSaved, clearLastSaved] = useLocalStorage('memo_date', '');
-  // const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
   const {
     canRecordAndTranscribe,
@@ -51,7 +50,7 @@ export const Memo = () => {
     if (newTranscript) {
       setInput(newTranscript);
       clearNewTranscript(); // Mark as consumed
-      setLastSaved(new Date());
+      setLastSaved(new Date() + '');
     }
   }, [newTranscript, setInput, clearNewTranscript]);
 

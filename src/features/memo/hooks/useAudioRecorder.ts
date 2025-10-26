@@ -25,7 +25,7 @@ export const useAudioRecorder = (): UseAudioRecorderReturn => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const chunksRef = useRef<Blob[]>([]);
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(null);
 
   const cleanup = useCallback(() => {
     if (streamRef.current) {
@@ -34,7 +34,7 @@ export const useAudioRecorder = (): UseAudioRecorderReturn => {
     }
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
-      intervalRef.current = undefined;
+      intervalRef.current = null;
     }
     chunksRef.current = [];
   }, []);
@@ -76,7 +76,7 @@ export const useAudioRecorder = (): UseAudioRecorderReturn => {
         
         if (intervalRef.current) {
           clearInterval(intervalRef.current);
-          intervalRef.current = undefined;
+          intervalRef.current = null;
         }
       };
 

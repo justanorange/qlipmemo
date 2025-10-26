@@ -1,7 +1,7 @@
 interface StatsProps {
   charCount: number;
   storageSize: number;
-  lastSaved: Date | null;
+  lastSaved: Date | string | null;
 };
 
 const formatBytes = (bytes: number) => {
